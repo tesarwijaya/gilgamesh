@@ -12,21 +12,39 @@ import {
 import {
   movieSearchSuccess,
   movieSearchFailed,
+
+  movieSearchDetailSuccess,
+  movieSearchDetailFailed,
 } from './actions'
 
-import { MOVIE_SEARCH } from "./reducer"
+import { MOVIE_SEARCH, MOVIE_SEARCH_DETAIL } from "./reducer"
 
 export function movieSearchEpic(action$, state$) {
   return action$
     .pipe(
       ofType(MOVIE_SEARCH),
-      mergeMap((payloads) => ajax(`http://www.omdbapi.com/?apikey=db686161&s=${state$.value.Movie.form.query}`)
+      mergeMap(() => ajax(`http://www.omdbapi.com/?apikey=db686161&s=${state$.value.Movie.search.form.query}`)
         .pipe(
           map(({ response }) => movieSearchSuccess(response)),
           catchError((response) => of(
-            movieSearchFailed({ message: response.xhr.statusText }),
+            movieSearchFailed(response),
           )),
         )),
-      catchError((response) => of(movieSearchFailed({ message: response.xhr.statusText }))),
+      catchError((response) => of(movieSearchFailed(response))),
+    )
+}
+
+export function movieSearchDetailEpic(action$, state$) {
+  return action$
+    .pipe(
+      ofType(MOVIE_SEARCH_DETAIL),
+      mergeMap(() => ajax(`http://www.omdbapi.com/?apikey=db686161&i=${state$.value.Movie.detail.modal}&plot=full`)
+        .pipe(
+          map(({ response }) => movieSearchDetailSuccess(response)),
+          catchError((response) => of(
+            movieSearchDetailFailed(response),
+          )),
+        )),
+      catchError((response) => of(movieSearchDetailFailed(response))),
     )
 }
