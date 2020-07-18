@@ -13,6 +13,40 @@ const initialState = {
       query: '',
     },
   },
+  detail: {
+    modal: '',
+    data: {
+      Actors: '',
+      Awards: '',
+      BoxOffice: '',
+      Country: '',
+      DVD: '',
+      Director: '',
+      Genre: '',
+      Language: '',
+      Metascore: '',
+      Plot: '',
+      Poster: '',
+      Production: '',
+      Rated: '',
+      Ratings: [],
+      Released: '',
+      Response: '',
+      Runtime: '',
+      Title: '',
+      Type: '',
+      Website: '',
+      Writer: '',
+      Year: '',
+      imdbID: '',
+      imdbRating: '',
+      imdbVotes: '',
+    },
+    error: {
+      message: ''
+    },
+    isLoading: false,
+  },
 }
 
 export default initialState

@@ -5,11 +5,15 @@ import Container from './container'
 import {
   movieSearch,
   movieSearchForm,
+
+  movieSearchDetailModal,
+  movieSearchDetail,
 } from './ducks/actions'
 
 function mapStateToProps(state) {
   return {
     search: state.Movie.search,
+    detail: state.Movie.detail,
   }
 }
 
@@ -26,6 +30,13 @@ function mapDispatchToProps(dispatch) {
       return e => {
         dispatch(movieSearchForm(e.target.name, e.target.value))
       }
+    },
+    detailModalHandler(data) {
+      dispatch(movieSearchDetailModal(data))
+      dispatch(movieSearchDetail())
+    },
+    detailModalClose() {
+      dispatch(movieSearchDetailModal(''))
     }
   }
 }

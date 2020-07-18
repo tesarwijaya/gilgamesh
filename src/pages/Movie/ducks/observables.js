@@ -12,9 +12,12 @@ import {
 import {
   movieSearchSuccess,
   movieSearchFailed,
+
+  movieSearchDetailSuccess,
+  movieSearchDetailFailed,
 } from './actions'
 
-import { MOVIE_SEARCH } from "./reducer"
+import { MOVIE_SEARCH, MOVIE_SEARCH_DETAIL } from "./reducer"
 
 export function movieSearchEpic(action$, state$) {
   return action$
@@ -28,5 +31,20 @@ export function movieSearchEpic(action$, state$) {
           )),
         )),
       catchError((response) => of(movieSearchFailed(response))),
+    )
+}
+
+export function movieSearchDetailEpic(action$, state$) {
+  return action$
+    .pipe(
+      ofType(MOVIE_SEARCH_DETAIL),
+      mergeMap(() => ajax(`http://www.omdbapi.com/?apikey=db686161&i=${state$.value.Movie.detail.modal}&plot=full`)
+        .pipe(
+          map(({ response }) => movieSearchDetailSuccess(response)),
+          catchError((response) => of(
+            movieSearchDetailFailed(response),
+          )),
+        )),
+      catchError((response) => of(movieSearchDetailFailed(response))),
     )
 }
