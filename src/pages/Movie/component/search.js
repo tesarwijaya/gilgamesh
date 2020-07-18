@@ -1,10 +1,10 @@
 import React from 'react'
 import {Button,Col,Form,Table} from 'react-bootstrap'
 
-function Search({data,form,formHandler,isLoading,search}) {
+function Search({formHandler,search,searchHandler}) {
   return (
     <>
-    <Form onSubmit={search()}>
+    <Form onSubmit={searchHandler()}>
       <Form.Row className="justify-content-md-center">
         <Col xs="6">
           <Form.Label htmlFor="inlineFormInput" srOnly>
@@ -14,15 +14,15 @@ function Search({data,form,formHandler,isLoading,search}) {
             placeholder="Search Movie"
             name="query"
             onChange={formHandler()}
-            value={form.query}
+            value={search.form.query}
           />
         </Col>
         <Col xs="auto">
-          <Button type="submit" disabled={isLoading}>Submit</Button>
+          <Button type="submit" disabled={search.isLoading}>Submit</Button>
         </Col>
       </Form.Row>
     </Form>
-    {data.Search.length > 0 && (
+    {search.data.Search.length > 0 && (
       <Table responsive>
         <thead>
           <tr>
@@ -32,7 +32,7 @@ function Search({data,form,formHandler,isLoading,search}) {
           </tr>
         </thead>
         <tbody>
-          {data.Search.map(v => (
+          {search.data.Search.map(v => (
             <tr key={v.imdbID}>
               <td>{v.Title}</td>
               <td>{v.Year}</td>

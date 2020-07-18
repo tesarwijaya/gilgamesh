@@ -20,13 +20,13 @@ export function movieSearchEpic(action$, state$) {
   return action$
     .pipe(
       ofType(MOVIE_SEARCH),
-      mergeMap((payloads) => ajax(`http://www.omdbapi.com/?apikey=db686161&s=${state$.value.Movie.form.query}`)
+      mergeMap(() => ajax(`http://www.omdbapi.com/?apikey=db686161&s=${state$.value.Movie.search.form.query}`)
         .pipe(
           map(({ response }) => movieSearchSuccess(response)),
           catchError((response) => of(
-            movieSearchFailed({ message: response.xhr.statusText }),
+            movieSearchFailed(response),
           )),
         )),
-      catchError((response) => of(movieSearchFailed({ message: response.xhr.statusText }))),
+      catchError((response) => of(movieSearchFailed(response))),
     )
 }

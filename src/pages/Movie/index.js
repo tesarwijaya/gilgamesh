@@ -9,16 +9,13 @@ import {
 
 function mapStateToProps(state) {
   return {
-    isLoading: state.Movie.isLoading,
-    data: state.Movie.data,
-    form: state.Movie.form,
-    error: state.Movie.error,
+    search: state.Movie.search,
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    search() {
+    searchHandler() {
       return (e) => {
         e.preventDefault()
 
