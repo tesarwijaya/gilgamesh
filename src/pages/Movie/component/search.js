@@ -1,11 +1,9 @@
 import React from 'react'
 import {Button,Container,Col,Form,Image,Modal,Row,Table} from 'react-bootstrap'
 
-function Search({detail,detailModalClose,detailModalHandler,favorites,favoriteAddHandler,favoriteRemoveHandler,formHandler,search,searchHandler}) {
+import isFavorite from '../../../libs/isFavorite'
 
-  const isFavorite = (favorites, id) => {
-    return !!favorites.filter(v => v.imdbID === id).length
-  }
+function Search({detail,detailModalClose,detailModalHandler,favorites,favoriteAddHandler,favoriteRemoveHandler,formHandler,search,searchHandler}) {
 
   return (
     <>
