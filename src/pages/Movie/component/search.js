@@ -4,11 +4,10 @@ import {Button,Container,Col,Form,Image,Modal,Row,Table} from 'react-bootstrap'
 import isFavorite from '../../../libs/isFavorite'
 
 function Search({detail,detailModalClose,detailModalHandler,favorites,favoriteAddHandler,favoriteRemoveHandler,formHandler,search,searchHandler}) {
-
   return (
     <>
     <Form onSubmit={searchHandler()}>
-      <Form.Row className="justify-content-md-center">
+      <Form.Row className="justify-content-md-center" style={{marginTop: 32, marginBottom: 32}}>
         <Col xs="6">
           <Form.Label htmlFor="inlineFormInput" srOnly>
             Query
@@ -32,6 +31,7 @@ function Search({detail,detailModalClose,detailModalHandler,favorites,favoriteAd
             <th>Title</th>
             <th>Year</th>
             <th>ImDB ID</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
