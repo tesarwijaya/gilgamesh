@@ -1,11 +1,17 @@
 import React from 'react'
-import {Button,Table} from 'react-bootstrap'
+import PropTypes from 'prop-types'
+import { Button, Table } from 'react-bootstrap'
 
 import isFavorite from '../../../libs/isFavorite'
 
-function Favorite({detailModalHandler,favorites,favoriteAddHandler,favoriteRemoveHandler}) {
+function Favorite({
+  detailModalHandler,
+  favorites,
+  favoriteAddHandler,
+  favoriteRemoveHandler,
+}) {
   return (
-    <Table responsive style={{marginTop: 32, marginBottom: 32}}>
+    <Table responsive style={{ marginTop: 32, marginBottom: 32 }}>
       <thead>
         <tr>
           <th>Title</th>
@@ -16,7 +22,7 @@ function Favorite({detailModalHandler,favorites,favoriteAddHandler,favoriteRemov
       </thead>
       <tbody>
         {favorites.length > 0 ? (
-          favorites.map(v => (
+          favorites.map((v) => (
             <tr key={v.imdbID}>
               <td><Button onClick={() => detailModalHandler(v.imdbID)} variant="link">{v.Title}</Button></td>
               <td>{v.Year}</td>
@@ -32,7 +38,7 @@ function Favorite({detailModalHandler,favorites,favoriteAddHandler,favoriteRemov
           ))
         ) : (
           <tr>
-            <td colSpan="4" style={{textAlign: "center"}}>
+            <td colSpan="4" style={{ textAlign: 'center' }}>
               You dont have Favorite Movie
             </td>
           </tr>
@@ -40,6 +46,13 @@ function Favorite({detailModalHandler,favorites,favoriteAddHandler,favoriteRemov
       </tbody>
     </Table>
   )
+}
+
+Favorite.propTypes = {
+  detailModalHandler: PropTypes.func.isRequired,
+  favorites: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  favoriteAddHandler: PropTypes.func.isRequired,
+  favoriteRemoveHandler: PropTypes.func.isRequired,
 }
 
 export default Favorite

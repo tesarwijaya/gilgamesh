@@ -3,7 +3,7 @@ import React from 'react'
 import Component from '../component'
 
 class Container extends React.Component {
-  componentDidMount(){}
+  componentDidMount() {}
 
   render() {
     return (

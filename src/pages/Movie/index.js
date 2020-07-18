@@ -1,11 +1,11 @@
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 
 import Container from './container'
 
 import {
   movieSearch,
   movieSearchForm,
-  
+
   movieSearchFavoriteAdd,
   movieSearchFavoriteRemove,
 
@@ -31,7 +31,7 @@ function mapDispatchToProps(dispatch) {
       }
     },
     formHandler() {
-      return e => {
+      return (e) => {
         dispatch(movieSearchForm(e.target.name, e.target.value))
       }
     },
@@ -51,11 +51,11 @@ function mapDispatchToProps(dispatch) {
       return () => {
         dispatch(movieSearchFavoriteRemove(data))
       }
-    }
+    },
   }
 }
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(Container)

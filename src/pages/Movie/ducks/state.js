@@ -6,7 +6,7 @@ const initialState = {
       totalResult: 0,
     },
     error: {
-      message: ''
+      message: '',
     },
     isLoading: false,
     form: {
@@ -43,7 +43,7 @@ const initialState = {
       imdbVotes: '',
     },
     error: {
-      message: ''
+      message: '',
     },
     isLoading: false,
   },

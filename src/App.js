@@ -1,6 +1,6 @@
-import React from 'react';
+import React from 'react'
 import { Provider } from 'react-redux'
-import {Container, Col, Row} from 'react-bootstrap'
+import { Container, Col, Row } from 'react-bootstrap'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 
@@ -21,7 +21,7 @@ function App() {
         </Row>
       </Container>
     </Provider>
-  );
+  )
 }
 
-export default App;
+export default App

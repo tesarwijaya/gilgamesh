@@ -17,7 +17,7 @@ import {
   movieSearchDetailFailed,
 } from './actions'
 
-import { MOVIE_SEARCH, MOVIE_SEARCH_DETAIL } from "./reducer"
+import { MOVIE_SEARCH, MOVIE_SEARCH_DETAIL } from './reducer'
 
 export function movieSearchEpic(action$, state$) {
   return action$

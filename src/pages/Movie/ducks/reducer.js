@@ -1,5 +1,5 @@
 import createReducer from '../../../libs/reducer'
-import state from './state'
+import State from './state'
 
 export const MOVIE_SEARCH = 'MOVIE_SEARCH'
 export const MOVIE_SEARCH_FAILED = 'MOVIE_SEARCH_FAILED'
@@ -22,7 +22,7 @@ const Movie = {
       isLoading: true,
     },
   }),
-  [MOVIE_SEARCH_FAILED]: (state, {payload}) => ({
+  [MOVIE_SEARCH_FAILED]: (state, { payload }) => ({
     ...state,
     search: {
       ...state.search,
@@ -32,7 +32,7 @@ const Movie = {
       },
     },
   }),
-  [MOVIE_SEARCH_SUCCESS]: (state, {payload}) => ({
+  [MOVIE_SEARCH_SUCCESS]: (state, { payload }) => ({
     ...state,
     search: {
       ...state.search,
@@ -40,28 +40,28 @@ const Movie = {
       data: payload.data,
     },
   }),
-  [MOVIE_SEARCH_FORM]: (state, {payload}) => ({
+  [MOVIE_SEARCH_FORM]: (state, { payload }) => ({
     ...state,
     search: {
       ...state.search,
       form: {
         ...state.form,
-        [payload.meta]: payload.data
-      }
+        [payload.meta]: payload.data,
+      },
     },
   }),
 
-  [MOVIE_SEARCH_FAVORITE_ADD]: (state, {payload}) => ({
+  [MOVIE_SEARCH_FAVORITE_ADD]: (state, { payload }) => ({
     ...state,
     favorites: [
       ...state.favorites,
-      payload.data
-    ]
+      payload.data,
+    ],
   }),
 
-  [MOVIE_SEARCH_FAVORITE_REMOVE]: (state, {payload}) => ({
+  [MOVIE_SEARCH_FAVORITE_REMOVE]: (state, { payload }) => ({
     ...state,
-    favorites: state.favorites.filter(i => i !== payload.data)
+    favorites: state.favorites.filter((i) => i !== payload.data),
   }),
 
   [MOVIE_SEARCH_DETAIL]: (state) => ({
@@ -69,33 +69,33 @@ const Movie = {
     detail: {
       ...state.detail,
       isLoading: true,
-    }
+    },
   }),
-  [MOVIE_SEARCH_DETAIL_FAILED]: (state, {payload}) => ({
+  [MOVIE_SEARCH_DETAIL_FAILED]: (state, { payload }) => ({
     ...state,
     detail: {
       ...state.detail,
       isLoading: false,
       error: {
         message: payload.error.message,
-      }
-    }
+      },
+    },
   }),
-  [MOVIE_SEARCH_DETAIL_MODAL]: (state, {payload}) => ({
+  [MOVIE_SEARCH_DETAIL_MODAL]: (state, { payload }) => ({
     ...state,
     detail: {
       ...state.detail,
       modal: payload.data,
-    }
+    },
   }),
-  [MOVIE_SEARCH_DETAIL_SUCCESS]: (state, {payload}) => ({
+  [MOVIE_SEARCH_DETAIL_SUCCESS]: (state, { payload }) => ({
     ...state,
     detail: {
       ...state.detail,
       isLoading: false,
       data: payload.data,
-    }
-  })
+    },
+  }),
 }
 
-export default createReducer(Movie, state)
+export default createReducer(Movie, State)

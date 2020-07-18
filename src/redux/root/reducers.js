@@ -6,9 +6,6 @@ const appReducers = combineReducers({
   Movie,
 })
 
-const rootReducers = (state, action) => {
-  return appReducers(state, action)
-}
-
+const rootReducers = (state, action) => appReducers(state, action)
 
 export default rootReducers
