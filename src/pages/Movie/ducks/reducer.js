@@ -6,6 +6,9 @@ export const MOVIE_SEARCH_FAILED = 'MOVIE_SEARCH_FAILED'
 export const MOVIE_SEARCH_SUCCESS = 'MOVIE_SEARCH_SUCCESS'
 export const MOVIE_SEARCH_FORM = 'MOVIE_SEARCH_FORM'
 
+export const MOVIE_SEARCH_FAVORITE_ADD = 'MOVIE_SEARCH_FAVORITE_ADD'
+export const MOVIE_SEARCH_FAVORITE_REMOVE = 'MOVIE_SEARCH_FAVORITE_REMOVE'
+
 export const MOVIE_SEARCH_DETAIL = 'MOVIE_SEARCH_DETAIL'
 export const MOVIE_SEARCH_DETAIL_FAILED = 'MOVIE_SEARCH_DETAIL_FAILED'
 export const MOVIE_SEARCH_DETAIL_MODAL = 'MOVIE_SEARCH_DETAIL_MODAL'
@@ -46,6 +49,19 @@ const Movie = {
         [payload.meta]: payload.data
       }
     },
+  }),
+
+  [MOVIE_SEARCH_FAVORITE_ADD]: (state, {payload}) => ({
+    ...state,
+    favorites: [
+      ...state.favorites,
+      payload.data
+    ]
+  }),
+
+  [MOVIE_SEARCH_FAVORITE_REMOVE]: (state, {payload}) => ({
+    ...state,
+    favorites: state.favorites.filter(i => i !== payload.data)
   }),
 
   [MOVIE_SEARCH_DETAIL]: (state) => ({

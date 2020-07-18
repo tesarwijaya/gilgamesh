@@ -1,11 +1,13 @@
 import React from 'react'
 import {Button,Container,Col,Form,Image,Modal,Row,Table} from 'react-bootstrap'
 
-function Search({detail,detailModalClose,detailModalHandler,formHandler,search,searchHandler}) {
+import isFavorite from '../../../libs/isFavorite'
+
+function Search({detail,detailModalClose,detailModalHandler,favorites,favoriteAddHandler,favoriteRemoveHandler,formHandler,search,searchHandler}) {
   return (
     <>
     <Form onSubmit={searchHandler()}>
-      <Form.Row className="justify-content-md-center">
+      <Form.Row className="justify-content-md-center" style={{marginTop: 32, marginBottom: 32}}>
         <Col xs="6">
           <Form.Label htmlFor="inlineFormInput" srOnly>
             Query
@@ -15,10 +17,13 @@ function Search({detail,detailModalClose,detailModalHandler,formHandler,search,s
             name="query"
             onChange={formHandler()}
             value={search.form.query}
+            disabled={search.isLoading}
           />
         </Col>
         <Col xs="auto">
-          <Button type="submit" disabled={search.isLoading}>Submit</Button>
+          <Button type="submit" disabled={search.isLoading}>
+            {search.isLoading ? 'loading...' : 'Search'}
+          </Button>
         </Col>
       </Form.Row>
     </Form>
@@ -29,6 +34,7 @@ function Search({detail,detailModalClose,detailModalHandler,formHandler,search,s
             <th>Title</th>
             <th>Year</th>
             <th>ImDB ID</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -37,6 +43,13 @@ function Search({detail,detailModalClose,detailModalHandler,formHandler,search,s
               <td><Button onClick={() => detailModalHandler(v.imdbID)} variant="link">{v.Title}</Button></td>
               <td>{v.Year}</td>
               <td>{v.imdbID}</td>
+              <td>
+                {isFavorite(favorites, v.imdbID) ? (
+                  <Button variant="outline-danger" onClick={favoriteRemoveHandler(v)}>Remove from My Favorite</Button>
+                ) : (
+                  <Button variant="outline-primary" onClick={favoriteAddHandler(v)}>Add to My Favorite</Button>
+                )}
+              </td>
             </tr>
           ))}
         </tbody>

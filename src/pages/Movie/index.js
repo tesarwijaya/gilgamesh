@@ -5,6 +5,9 @@ import Container from './container'
 import {
   movieSearch,
   movieSearchForm,
+  
+  movieSearchFavoriteAdd,
+  movieSearchFavoriteRemove,
 
   movieSearchDetailModal,
   movieSearchDetail,
@@ -14,6 +17,7 @@ function mapStateToProps(state) {
   return {
     search: state.Movie.search,
     detail: state.Movie.detail,
+    favorites: state.Movie.favorites,
   }
 }
 
@@ -37,6 +41,16 @@ function mapDispatchToProps(dispatch) {
     },
     detailModalClose() {
       dispatch(movieSearchDetailModal(''))
+    },
+    favoriteAddHandler(data) {
+      return () => {
+        dispatch(movieSearchFavoriteAdd(data))
+      }
+    },
+    favoriteRemoveHandler(data) {
+      return () => {
+        dispatch(movieSearchFavoriteRemove(data))
+      }
     }
   }
 }
