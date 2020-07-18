@@ -47,6 +47,8 @@ const initialState = {
     },
     isLoading: false,
   },
+
+  favorites: [],
 }
 
 export default initialState

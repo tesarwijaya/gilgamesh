@@ -1,7 +1,12 @@
 import React from 'react'
 import {Button,Container,Col,Form,Image,Modal,Row,Table} from 'react-bootstrap'
 
-function Search({detail,detailModalClose,detailModalHandler,formHandler,search,searchHandler}) {
+function Search({detail,detailModalClose,detailModalHandler,favorites,favoriteAddHandler,favoriteRemoveHandler,formHandler,search,searchHandler}) {
+
+  const isFavorite = (favorites, id) => {
+    return !!favorites.filter(v => v.imdbID === id).length
+  }
+
   return (
     <>
     <Form onSubmit={searchHandler()}>
@@ -37,6 +42,13 @@ function Search({detail,detailModalClose,detailModalHandler,formHandler,search,s
               <td><Button onClick={() => detailModalHandler(v.imdbID)} variant="link">{v.Title}</Button></td>
               <td>{v.Year}</td>
               <td>{v.imdbID}</td>
+              <td>
+                {isFavorite(favorites, v.imdbID) ? (
+                  <Button variant="outline-danger" onClick={favoriteRemoveHandler(v)}>Remove from My Favorite</Button>
+                ) : (
+                  <Button variant="outline-primary" onClick={favoriteAddHandler(v)}>Add to My Favorite</Button>
+                )}
+              </td>
             </tr>
           ))}
         </tbody>

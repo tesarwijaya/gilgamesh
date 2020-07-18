@@ -4,6 +4,9 @@ import {
   MOVIE_SEARCH_SUCCESS,
   MOVIE_SEARCH_FORM,
 
+  MOVIE_SEARCH_FAVORITE_ADD,
+  MOVIE_SEARCH_FAVORITE_REMOVE,
+
   MOVIE_SEARCH_DETAIL,
   MOVIE_SEARCH_DETAIL_FAILED,
   MOVIE_SEARCH_DETAIL_MODAL,
@@ -34,6 +37,20 @@ export function movieSearchForm(meta, data) {
   return {
     type: MOVIE_SEARCH_FORM,
     payload: {meta, data},
+  }
+}
+
+export function movieSearchFavoriteAdd(data) {
+  return {
+    type: MOVIE_SEARCH_FAVORITE_ADD,
+    payload: {data},
+  }
+}
+
+export function movieSearchFavoriteRemove(data) {
+  return {
+    type: MOVIE_SEARCH_FAVORITE_REMOVE,
+    payload: {data},
   }
 }
 
