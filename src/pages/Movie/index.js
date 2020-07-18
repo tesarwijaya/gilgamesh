@@ -1,19 +1,30 @@
-import React from 'react'
-import {Tab, Tabs} from 'react-bootstrap'
+import {connect} from 'react-redux'
 
-import Search from './search'
+import Container from './container'
 
-function Movie() {
-  return (
-    <Tabs defaultActiveKey="search">
-      <Tab eventKey="search" title="Search">
-        <Search />
-      </Tab>
-      <Tab eventKey="favorite" title="Favorite">
-        Content
-      </Tab>
-    </Tabs>
-  )
+import {
+  movieSearch,
+  movieSearchForm,
+} from './ducks/actions'
+
+function mapStateToProps(state) {
+  return {}
 }
 
-export default Movie
+function mapDispatchToProps(dispatch) {
+  return {
+    Search() {
+      dispatch(movieSearch())
+    },
+    formHandler() {
+      return e => {
+        dispatch(movieSearchForm(e.target.name, e.target.value))
+      }
+    }
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Container)
