@@ -6,7 +6,7 @@ import Search from './search'
 
 function Movie(props) {
   return (
-    <Tabs defaultActiveKey="search">
+    <Tabs defaultActiveKey="search" style={{marginTop: 32}}>
       <Tab eventKey="search" title="Search">
         <Search {...props}/>
       </Tab>

@@ -17,10 +17,13 @@ function Search({detail,detailModalClose,detailModalHandler,favorites,favoriteAd
             name="query"
             onChange={formHandler()}
             value={search.form.query}
+            disabled={search.isLoading}
           />
         </Col>
         <Col xs="auto">
-          <Button type="submit" disabled={search.isLoading}>Submit</Button>
+          <Button type="submit" disabled={search.isLoading}>
+            {search.isLoading ? 'loading...' : 'Search'}
+          </Button>
         </Col>
       </Form.Row>
     </Form>
