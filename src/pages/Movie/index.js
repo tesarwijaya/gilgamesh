@@ -8,13 +8,22 @@ import {
 } from './ducks/actions'
 
 function mapStateToProps(state) {
-  return {}
+  return {
+    isLoading: state.Movie.isLoading,
+    data: state.Movie.data,
+    form: state.Movie.form,
+    error: state.Movie.error,
+  }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    Search() {
-      dispatch(movieSearch())
+    search() {
+      return (e) => {
+        e.preventDefault()
+
+        dispatch(movieSearch())
+      }
     },
     formHandler() {
       return e => {
