@@ -3,11 +3,11 @@ import {Tab, Tabs} from 'react-bootstrap'
 
 import Search from './search'
 
-function Movie() {
+function Movie(props) {
   return (
     <Tabs defaultActiveKey="search">
       <Tab eventKey="search" title="Search">
-        <Search />
+        <Search {...props}/>
       </Tab>
       <Tab eventKey="favorite" title="Favorite">
         Content

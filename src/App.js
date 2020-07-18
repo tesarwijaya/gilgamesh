@@ -2,11 +2,11 @@ import React from 'react';
 import { Provider } from 'react-redux'
 import {Container, Col, Row} from 'react-bootstrap'
 
-import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 import initStore from './redux'
 
-import Movie from './pages/Movie/component'
+import Movie from './pages/Movie'
 
 const store = initStore({})
 
